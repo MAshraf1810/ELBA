@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@import "@fontsource/inter";
+@import "@fontsource/almarai";
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -110,11 +113,90 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+@theme {
+  --font-inter: "Inter", sans-serif;
+  --font-almarai: "Almarai", sans-serif;
+}
+
+html {
+  font-family: var(--font-inter);
+  direction: ltr;
+}
+
+html[lang="ar"] {
+  font-family: var(--font-almarai);
+  direction: rtl;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
   body {
     @apply bg-background text-foreground;
+  }
+
+  :root {
+    /* Primary Colors */
+    --primary_10: #19527c;
+    --primary_100: #d6f4ff;
+    --primary_200: #aee7fb;
+    --primary_300: #7fd5f3;
+    --primary_400: #4fc2ea;
+    --primary_500: #4fc2ea;
+    --primary_600: #35b3e3;
+    --primary_700: #1a7ba3;
+    --primary_800: #115f82;
+    --primary_900: #094561;
+    --primary_1000: #042e44;
+
+    /* Secondary Colors */
+    --secondary_100: #d8e5e9;
+    --secondary_200: #b4ccd3;
+    --secondary_300: #8cafb8;
+    --secondary_400: #668b96;
+    --secondary_500: #496f79;
+    --secondary_600: #355861;
+    --secondary_700: #2e4e58;
+    --secondary_800: #243e47;
+    --secondary_900: #1a2e36;
+    --secondary_1000: #111e24;
+
+    /* Neutral Colors */
+    --neutral_10: #030303;
+    --neutral_100: #fcfcfc;
+    --neutral_200: #eaeaea;
+    --neutral_300: #d8d8d8;
+    --neutral_400: #c7c7c7;
+    --neutral_500: #b5b5b5;
+    --neutral_600: #a3a3a3;
+    --neutral_700: #919191;
+    --neutral_800: #808080;
+    --neutral_900: #6e6e6e;
+    --neutral_1000: #5c5c5c;
+    --neutral_1100: #4a4a4a;
+    --neutral_1200: #383838;
+    --neutral_1300: #272727;
+    --neutral_1400: #151515;
+    --neutral_1500: #030303;
+
+    /* Red Colors */
+    --red_10: #fb3748;
+    --red_100: #fb3748;
+    --red_200: #d00416;
+
+    /* Yellow Colors */
+    --yellow_10: #ffdb43;
+    --yellow_100: #ffdb43;
+    --yellow_200: #dfb400;
+
+    /* Green Colors */
+    --green_10: #1fc16b;
+    --green_100: #84ebb4;
+    --green_200: #1fc16b;
+
+    /* Blue Colors */
+    --blue_primary: #041127;
+    --blue_secondary: #0b1932;
   }
 }
