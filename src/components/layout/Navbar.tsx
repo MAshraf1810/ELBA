@@ -1,48 +1,73 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router";
 import { useTranslation } from "react-i18next";
 import { FaBars, FaTimes } from "react-icons/fa";
+import { Input } from "../ui/input";
+import { IoMdGitCompare } from "react-icons/io";
+import { BiSolidUser } from "react-icons/bi";
+import { RiHeartsFill } from "react-icons/ri";
+import { HiShoppingCart } from "react-icons/hi";
+import { IoSearchOutline } from "react-icons/io5";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { t, i18n } = useTranslation("nav");
 
   return (
-    <nav className="bg-red-400 top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out">
+    <nav className="transition-all duration-500 ease-in-out">
       <div
-        className={`flex justify-between items-center px-6 py-4 xl:px-8 2xl:px-20 ${
-          isOpen ? "bg-[#00103B] shadow-md" : "bg-transparent"
+        className={`flex justify-between items-center lg:w-[95%] m-auto p-3 ${
+          isOpen ? "bg-(--blue_secondary) shadow-md" : "bg-transparent"
         }`}
       >
         {/* Logo */}
-        <div className="w-32">
+        <div className="w-36">
           <img
-            src={"/assets/images/logoWhite.png"}
+            src={"/assets/logo.webp"}
             alt="logo"
+            // className="w-[180px] h-[65px] object-contain"
             className="w-full h-full object-contain"
           />
         </div>
 
         {/* Desktop Links */}
-        <div className="hidden lg:flex">
-          <ul className="flex items-center gap-x-6 text-[12px] xl:text-lg font-medium">
-            <li>
-              <NavLink
-                to="/"
-                className={({ isActive }) =>
-                  isActive
-                    ? `text-white text-2xl p-2 font-bold rounded-full ${
-                        i18n.language === "ar"
-                          ? "custom-underline-left"
-                          : "custom-underline-right"
-                      }`
-                    : "text-white/70 text-2xl p-2 hover:text-white"
-                }
-              >
-                {t("home")}
-              </NavLink>
-            </li>
-          </ul>
+        <div className="hidden lg:flex w-full">
+          <div className="flex items-center justify-between gap-2 text-lg font-normal w-full mx-auto xl:w-[90%]">
+            <div className="flex items-center gap-3 ">
+              <div className="w-8 h-8 bg-(--blue_secondary) flex items-center justify-center rounded-full">
+                <FaBars className="text-white text-lg" />
+              </div>
+              <span>جميع الاقسام</span>
+            </div>
+
+            <div className="relative">
+              <IoSearchOutline className="absolute right-[25px] top-1/2 -translate-y-1/2 text-black font-bold z-10 pointer-events-none" />
+              <Input
+                className="border-black w-[300px] rounded-full pr-[58px] xl:w-[500px]"
+                type="search"
+                placeholder="ابحث..."
+              />
+            </div>
+
+            <div className="flex items-center gap-2 ">
+              <IoMdGitCompare className="text-(--primary_600) text-2xl" />
+              <span>المقارنة</span>
+            </div>
+
+            <div className="flex items-center gap-2 ">
+              <BiSolidUser className="text-(--primary_600) text-2xl" />
+              <span>حسابي</span>
+            </div>
+
+            <div className="flex items-center gap-2 ">
+              <RiHeartsFill className="text-(--primary_600) text-2xl" />
+              <span>المفضلة</span>
+            </div>
+
+            <div className="">
+              <HiShoppingCart className="text-(--primary_600) text-2xl" />
+            </div>
+          </div>
         </div>
 
         {/* Mobile Menu Button */}
@@ -71,7 +96,7 @@ const Navbar: React.FC = () => {
           onClick={() => setIsOpen(false)}
         />
         <aside
-          className={`absolute top-0 h-full w-72 max-w-full bg-[#00103A] text-white shadow-2xl flex flex-col transition-transform duration-300 ease-in-out ${
+          className={`absolute top-0 h-full w-72 max-w-full bg-(--blue_secondary) text-white shadow-2xl flex flex-col transition-transform duration-300 ease-in-out ${
             i18n.language === "ar"
               ? `right-0 ${isOpen ? "translate-x-0" : "translate-x-full"}`
               : `left-0 ${isOpen ? "translate-x-0" : "-translate-x-full"}`

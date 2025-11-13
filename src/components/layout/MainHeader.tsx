@@ -1,5 +1,4 @@
 import LanguageSwitcher from "../once/LanguageSwitcher";
-import { Separator } from "../ui/separator";
 
 const MainHeader = () => {
   return (
