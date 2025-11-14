@@ -9,30 +9,12 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { useTranslation } from "react-i18next";
-
-const slides = [
-  {
-    content: <div className="justify-center items-center text-white">A</div>,
-  },
-  {
-    content: <div>B</div>,
-  },
-  {
-    content: <div>C</div>,
-  },
-  {
-    content: <div>D</div>,
-  },
-  {
-    content: <div>E</div>,
-  },
-];
+import useHeroCarouselSlides from "./HeroCarouselContent";
 
 export default function HomeCarousel() {
-  const { i18n } = useTranslation();
   const [api, setApi] = React.useState<CarouselApi | null>(null);
   const [activeIndex, setActiveIndex] = React.useState(0);
+  const slides = useHeroCarouselSlides();
 
   React.useEffect(() => {
     if (!api) return;
@@ -60,7 +42,7 @@ export default function HomeCarousel() {
   const getSlideConfig = (index: number) => {
     if (index === middleIndex) {
       return {
-        cardClass: "bg-yellow-500",
+        cardClass: "bg-blue-500",
         basisClass: "basis-[85%]",
       };
     }
@@ -74,7 +56,7 @@ export default function HomeCarousel() {
 
     if (rightIndex !== null && index === rightIndex) {
       return {
-        cardClass: "bg-green-500",
+        cardClass: "bg-blue-500",
         basisClass: "basis-[10%]",
       };
     }
@@ -83,7 +65,7 @@ export default function HomeCarousel() {
   };
 
   return (
-    <div className="w-full mx-auto bg-green-400">
+    <div className="w-full mx-auto">
       <Carousel
         opts={{
           align: "center",
@@ -92,7 +74,7 @@ export default function HomeCarousel() {
         className="w-full overflow-hidden"
         setApi={setApi}
       >
-        <CarouselContent className="bg-green-950 h-[600px]">
+        <CarouselContent className="h-[400px] xl:h-[550px]">
           {slides.map((slide, index) => {
             const { cardClass, basisClass } = getSlideConfig(index);
 
@@ -103,11 +85,7 @@ export default function HomeCarousel() {
               >
                 <div className="h-full">
                   <Card className={`h-full overflow-hidden ${cardClass}`}>
-                    <CardContent
-                      className={`relative ${
-                        i18n.language === "ar" ? "text-end" : "text-start"
-                      }`}
-                    >
+                    <CardContent className="relative h-full w-full">
                       {slide.content}
                     </CardContent>
                   </Card>
