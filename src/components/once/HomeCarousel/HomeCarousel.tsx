@@ -32,9 +32,10 @@ export default function HomeCarousel() {
   }, [api]);
 
   const TOTAL_ITEMS = 7;
-  const leftIndex = activeIndex > 0 ? activeIndex - 1 : null;
   const middleIndex = activeIndex;
-  const rightIndex = activeIndex < TOTAL_ITEMS - 1 ? activeIndex + 1 : null;
+  const leftIndex =
+    TOTAL_ITEMS > 1 ? (activeIndex - 1 + TOTAL_ITEMS) % TOTAL_ITEMS : null;
+  const rightIndex = TOTAL_ITEMS > 1 ? (activeIndex + 1) % TOTAL_ITEMS : null;
 
   const getSlideConfig = (index: number) => {
     if (index === middleIndex) {
@@ -66,6 +67,7 @@ export default function HomeCarousel() {
       <Carousel
         opts={{
           align: "center",
+          loop: true,
         }}
         className="w-full overflow-hidden"
         setApi={setApi}
