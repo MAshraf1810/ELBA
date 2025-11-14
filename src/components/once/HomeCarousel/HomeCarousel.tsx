@@ -10,6 +10,21 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
+const slides = [
+  {
+    content: <div>Mohamed</div>,
+  },
+  {
+    content: <div>Ahmed</div>,
+  },
+  {
+    content: <div>Ziad</div>,
+  },
+  {
+    content: <div>Yasser</div>,
+  },
+];
+
 export default function HomeCarousel() {
   const [api, setApi] = React.useState<CarouselApi | null>(null);
   const [activeIndex, setActiveIndex] = React.useState(0);
@@ -31,7 +46,7 @@ export default function HomeCarousel() {
     };
   }, [api]);
 
-  const TOTAL_ITEMS = 7;
+  const TOTAL_ITEMS = slides.length;
   const middleIndex = activeIndex;
   const leftIndex =
     TOTAL_ITEMS > 1 ? (activeIndex - 1 + TOTAL_ITEMS) % TOTAL_ITEMS : null;
@@ -40,7 +55,7 @@ export default function HomeCarousel() {
   const getSlideConfig = (index: number) => {
     if (index === middleIndex) {
       return {
-        cardClass: "bg-red-500 text-white",
+        cardClass: "bg-yellow-500 text-white",
         basisClass: "basis-[85%]",
       };
     }
@@ -63,7 +78,7 @@ export default function HomeCarousel() {
   };
 
   return (
-    <div className="w-full mx-auto">
+    <div className="w-full mx-auto bg-green-400">
       <Carousel
         opts={{
           align: "center",
@@ -72,8 +87,8 @@ export default function HomeCarousel() {
         className="w-full overflow-hidden"
         setApi={setApi}
       >
-        <CarouselContent>
-          {Array.from({ length: TOTAL_ITEMS }).map((_, index) => {
+        <CarouselContent className="bg-green-950 h-[600px]">
+          {slides.map((slide, index) => {
             const { cardClass, basisClass } = getSlideConfig(index);
 
             return (
@@ -82,11 +97,9 @@ export default function HomeCarousel() {
                 className={`transition-[flex-basis] duration-300 ease-in-out ${basisClass}`}
               >
                 <div className="h-full">
-                  <Card className={`h-full ${cardClass}`}>
-                    <CardContent className="flex h-full items-center justify-center p-6">
-                      <span className="text-3xl font-semibold">
-                        {index + 1}
-                      </span>
+                  <Card className={`h-full overflow-hidden ${cardClass}`}>
+                    <CardContent className="relative flex h-full items-start">
+                      {slide.content}
                     </CardContent>
                   </Card>
                 </div>
