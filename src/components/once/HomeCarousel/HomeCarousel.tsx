@@ -9,23 +9,28 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { useTranslation } from "react-i18next";
 
 const slides = [
   {
-    content: <div>Mohamed</div>,
+    content: <div className="justify-center items-center text-white">A</div>,
   },
   {
-    content: <div>Ahmed</div>,
+    content: <div>B</div>,
   },
   {
-    content: <div>Ziad</div>,
+    content: <div>C</div>,
   },
   {
-    content: <div>Yasser</div>,
+    content: <div>D</div>,
+  },
+  {
+    content: <div>E</div>,
   },
 ];
 
 export default function HomeCarousel() {
+  const { i18n } = useTranslation();
   const [api, setApi] = React.useState<CarouselApi | null>(null);
   const [activeIndex, setActiveIndex] = React.useState(0);
 
@@ -55,21 +60,21 @@ export default function HomeCarousel() {
   const getSlideConfig = (index: number) => {
     if (index === middleIndex) {
       return {
-        cardClass: "bg-yellow-500 text-white",
+        cardClass: "bg-yellow-500",
         basisClass: "basis-[85%]",
       };
     }
 
     if (leftIndex !== null && index === leftIndex) {
       return {
-        cardClass: "bg-blue-500 text-white",
+        cardClass: "bg-blue-500",
         basisClass: "basis-[10%]",
       };
     }
 
     if (rightIndex !== null && index === rightIndex) {
       return {
-        cardClass: "bg-green-500 text-white",
+        cardClass: "bg-green-500",
         basisClass: "basis-[10%]",
       };
     }
@@ -98,7 +103,11 @@ export default function HomeCarousel() {
               >
                 <div className="h-full">
                   <Card className={`h-full overflow-hidden ${cardClass}`}>
-                    <CardContent className="relative flex h-full items-start">
+                    <CardContent
+                      className={`relative ${
+                        i18n.language === "ar" ? "text-end" : "text-start"
+                      }`}
+                    >
                       {slide.content}
                     </CardContent>
                   </Card>
