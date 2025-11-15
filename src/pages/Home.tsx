@@ -2,11 +2,14 @@ import HomeCarousel from "@/components/once/HomeCarousel/HomeCarousel";
 
 const Home = () => {
   return (
-    <div className="my-10">
-      <div dir="ltr" className="flex justify-center">
+    <>
+      <div dir="ltr" className="w-full overflow-hidden h-[500px] my-5">
         <HomeCarousel />
       </div>
-    </div>
+      <div>
+        More content here
+      </div>
+    </>
   );
 };
 

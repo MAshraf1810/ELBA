@@ -51,6 +51,7 @@ function Carousel({
 }: React.ComponentProps<"div"> & CarouselProps) {
   const [carouselRef, api] = useEmblaCarousel(
     {
+      loop: true,
       ...opts,
       axis: orientation === "horizontal" ? "x" : "y",
     },
@@ -118,7 +119,11 @@ function Carousel({
     >
       <div
         onKeyDownCapture={handleKeyDown}
-        className={cn("relative", className)}
+        className={cn(
+          "relative flex w-full items-center gap-5",
+          orientation === "horizontal" ? "flex-row" : "flex-col gap-4",
+          className
+        )}
         role="region"
         aria-roledescription="carousel"
         data-slot="carousel"
@@ -136,13 +141,18 @@ function CarouselContent({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       ref={carouselRef}
-      className="overflow-hidden"
+      className={cn(
+        "overflow-hidden",
+        orientation === "horizontal"
+          ? "basis-[80%] shrink-0 grow"
+          : "w-full basis-[80%]"
+      )}
       data-slot="carousel-content"
     >
       <div
         className={cn(
           "flex",
-          orientation === "horizontal" ? "" : "-mt-4 flex-col",
+          orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col",
           className
         )}
         {...props}
@@ -183,17 +193,17 @@ function CarouselPrevious({
       variant={variant}
       size={size}
       className={cn(
-        "absolute size-8 rounded-full",
+        "flex items-center justify-center rounded-none bg-[#1C201D] hover:bg-[#1C201D] hover:text-current cursor-pointer",
         orientation === "horizontal"
-          ? "top-1/2 -left-12 -translate-y-1/2"
-          : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
+          ? "basis-[10%] max-w-[10%] shrink-0"
+          : "w-full",
         className
       )}
       disabled={!canScrollPrev}
       onClick={scrollPrev}
       {...props}
     >
-      <ArrowLeft />
+      <ArrowLeft className="cursor-pointer text-white!" />
       <span className="sr-only">Previous slide</span>
     </Button>
   );
@@ -213,17 +223,17 @@ function CarouselNext({
       variant={variant}
       size={size}
       className={cn(
-        "absolute size-8 rounded-full",
+        "flex items-center justify-center rounded-none bg-linear-to-b from-[#8FD7AF] to-[#338D98] hover:bg-linear-to-b! hover:from-[#338D98]! hover:to-[#8FD7AF]! hover:text-current cursor-pointer",
         orientation === "horizontal"
-          ? "top-1/2 -right-12 -translate-y-1/2"
-          : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
+          ? "basis-[10%] max-w-[10%] shrink-0"
+          : "w-full",
         className
       )}
       disabled={!canScrollNext}
       onClick={scrollNext}
       {...props}
     >
-      <ArrowRight />
+      <ArrowRight className="text-white!" />
       <span className="sr-only">Next slide</span>
     </Button>
   );
