@@ -1,4 +1,4 @@
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/heroCard";
 import {
   Carousel,
   CarouselContent,
@@ -10,15 +10,17 @@ const HomeCarousel = () => {
   const slides = useHeroCarouselSlides();
 
   return (
-    <Carousel className="h-[500px] bg-green-600" opts={{ align: "center" }}>
+    <Carousel className="h-[500px]" opts={{ align: "center" }}>
       <CarouselContent className="cursor-grab h-full">
         {slides.map((slide, index) => (
           <CarouselItem
             key={index}
-            className="basis-[90%] md:basis-[85%] lg:basis-[80%]"
+            className="basis-[90%] md:basis-[85%] lg:basis-[80%] select-none"
           >
             <Card className="rounded-3xl h-[500px] overflow-hidden">
-              <CardContent className="p-0 h-full">{slide.content}</CardContent>
+              <CardContent className="p-0 h-full select-none">
+                {slide.content}
+              </CardContent>
             </Card>
           </CarouselItem>
         ))}
