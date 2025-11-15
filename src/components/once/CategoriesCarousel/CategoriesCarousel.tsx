@@ -51,7 +51,7 @@ const CategoriesCarousel = () => {
       opts={{
         align: "start",
       }}
-      className="w-full max-w-[90%] mx-auto"
+      className="w-full max-w-[85%] mx-auto"
     >
       <CarouselContent>
         {categoriesData.map((category) => (

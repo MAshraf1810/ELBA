@@ -84,6 +84,36 @@ const useHeroCarouselSlides = () => {
         </div>
       ),
     },
+    {
+      content: (
+        <div
+          className={`w-full h-full flex items-center pr-12 bg-black ${
+            i18n.language === "ar" ? "flex-row" : "flex-row-reverse"
+          } p-2 bg-no-repeat bg-center`}
+          // style={{
+          //   backgroundImage: "url('/assets/HomeCarousel/Content/Hero1bg.webp')",
+          //   backgroundSize: "100% 100%",
+          // }}
+        >
+          C
+        </div>
+      ),
+    },
+    {
+      content: (
+        <div
+          className={`w-full h-full flex items-center pr-12 bg-black ${
+            i18n.language === "ar" ? "flex-row" : "flex-row-reverse"
+          } p-2 bg-no-repeat bg-center`}
+          // style={{
+          //   backgroundImage: "url('/assets/HomeCarousel/Content/Hero1bg.webp')",
+          //   backgroundSize: "100% 100%",
+          // }}
+        >
+          C
+        </div>
+      ),
+    },
   ];
 };
 

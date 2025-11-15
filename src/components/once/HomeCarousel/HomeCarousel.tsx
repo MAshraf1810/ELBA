@@ -5,12 +5,32 @@ import {
   CarouselItem,
 } from "@/components/ui/heroCarousel";
 import useHeroCarouselSlides from "./HeroCarouselContent";
+import { type CarouselApi } from "@/components/ui/carousel";
+import { useEffect, useState } from "react";
+
+const AUTOPLAY_INTERVAL = 6000;
 
 const HomeCarousel = () => {
+  const [api, setApi] = useState<CarouselApi>();
+
+  useEffect(() => {
+    if (!api) {
+      return;
+    }
+
+    const autoplay = window.setInterval(() => {
+      api.scrollNext();
+    }, AUTOPLAY_INTERVAL);
+
+    return () => {
+      window.clearInterval(autoplay);
+    };
+  }, [api]);
+
   const slides = useHeroCarouselSlides();
 
   return (
-    <Carousel className="h-[500px]" opts={{ align: "center" }}>
+    <Carousel setApi={setApi} className="h-[500px]" opts={{ align: "center" }}>
       <CarouselContent className="cursor-grab h-full">
         {slides.map((slide, index) => (
           <CarouselItem
