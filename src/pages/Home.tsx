@@ -1,3 +1,4 @@
+import CategoriesCarousel from "@/components/once/CategoriesCarousel/CategoriesCarousel";
 import HomeCarousel from "@/components/once/HomeCarousel/HomeCarousel";
 
 const Home = () => {
@@ -7,7 +8,9 @@ const Home = () => {
         <HomeCarousel />
       </div>
 
-      <div className="bg-green-400 p-2"></div>
+      <div dir="ltr" className="p-2 mx-auto w-full flex justify-center mt-20">
+        <CategoriesCarousel />
+      </div>
     </>
   );
 };
