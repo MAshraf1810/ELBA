@@ -120,8 +120,8 @@ function Carousel({
       <div
         onKeyDownCapture={handleKeyDown}
         className={cn(
-          "relative flex w-full items-center gap-5",
-          orientation === "horizontal" ? "flex-row" : "flex-col gap-4",
+          "relative flex w-full items-center justify-center overflow-hidden",
+          orientation === "horizontal" ? "flex-row gap-0" : "flex-col gap-4",
           className
         )}
         role="region"
@@ -144,7 +144,7 @@ function CarouselContent({ className, ...props }: React.ComponentProps<"div">) {
       className={cn(
         "overflow-hidden",
         orientation === "horizontal"
-          ? "basis-[80%] shrink-0 grow"
+          ? "basis-full shrink-0 grow-0"
           : "w-full basis-[80%]"
       )}
       data-slot="carousel-content"

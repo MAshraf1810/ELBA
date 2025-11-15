@@ -55,16 +55,16 @@ const useHeroCarouselSlides = () => {
       ),
     },
     {
-      content: <div>B</div>,
+      content: <div className="bg-red-300 p-5">B</div>,
     },
     {
-      content: <div>C</div>,
+      content: <div className="bg-red-300 p-5">C</div>,
     },
     {
-      content: <div>D</div>,
+      content: <div className="bg-red-300 p-5">D</div>,
     },
     {
-      content: <div>E</div>,
+      content: <div className="bg-red-300 p-5">E</div>,
     },
   ];
 };
